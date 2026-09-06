@@ -1,0 +1,243 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>One Question ❤️</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            overflow: hidden;
+        }
+
+        .card {
+            width: 90%;
+            max-width: 500px;
+            padding: 45px 30px;
+            text-align: center;
+            background: white;
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .heart {
+            font-size: 70px;
+            animation: heartbeat 1.3s infinite;
+        }
+
+        h1 {
+            color: #ff4f70;
+            font-size: 32px;
+            margin: 20px 0 10px;
+        }
+
+        p {
+            color: #555;
+            font-size: 18px;
+        }
+
+        .buttons {
+            margin-top: 35px;
+            position: relative;
+            height: 100px;
+        }
+
+        button {
+            border: none;
+            padding: 15px 35px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        #yes {
+            background: #ff4f70;
+            color: white;
+        }
+
+        #yes:hover {
+            transform: scale(1.1);
+            background: #ff3158;
+        }
+
+        #no {
+            background: #ddd;
+            color: #555;
+            position: absolute;
+            margin-left: 15px;
+        }
+
+        #success {
+            display: none;
+        }
+
+        #success h1 {
+            font-size: 36px;
+        }
+
+        .love-message {
+            font-size: 20px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card" id="question">
+
+        <div class="heart">❤️</div>
+
+        <h1>Hey Beautiful...</h1>
+
+        <p>
+            I have a very important question for you...
+        </p>
+
+        <h1>Will you go on a date with me? 🥰</h1>
+
+        <div class="buttons">
+
+            <button id="yes" onclick="sayYes()">
+                YES ❤️
+            </button>
+
+            <button id="no">
+                NO 😏
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="card" id="success">
+
+        <div class="heart">💖</div>
+
+        <h1>HELLOWZZZ SAMAR!💖 </h1>
+
+        <p class="love-message">
+            I knew you would say yes 
+            <br><br>
+            Get ready...
+            <br>
+            Because this date is going to be our first.
+            <br><br>
+           see you. ❤️
+        </p>
+
+        <div style="font-size: 40px;">
+            
+        </div>
+
+    </div>
+
+
+    <script>
+
+        const noButton = document.getElementById("no");
+
+        function moveNoButton() {
+
+            const card = document.querySelector(".card");
+
+            const cardWidth = card.offsetWidth;
+            const cardHeight = card.offsetHeight;
+
+            const buttonWidth = noButton.offsetWidth;
+            const buttonHeight = noButton.offsetHeight;
+
+            const maxX = cardWidth - buttonWidth - 20;
+            const maxY = 80;
+
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+
+            noButton.style.left = randomX + "px";
+            noButton.style.top = randomY + "px";
+        }
+
+        // Move when the mouse gets close
+        noButton.addEventListener("mouseenter", moveNoButton);
+
+        // Also works on phones
+        noButton.addEventListener("touchstart", function(event) {
+            event.preventDefault();
+            moveNoButton();
+        });
+
+        function sayYes() {
+
+            document.getElementById("question").style.display = "none";
+            document.getElementById("success").style.display = "block";
+
+            createHearts();
+        }
+
+
+        function createHearts() {
+
+            for (let i = 0; i < 30; i++) {
+
+                const heart = document.createElement("div");
+
+                heart.innerHTML = "❤️";
+
+                heart.style.position = "fixed";
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.top = "100vh";
+                heart.style.fontSize = (15 + Math.random() * 30) + "px";
+                heart.style.transition = "transform 3s, opacity 3s";
+                heart.style.zIndex = "999";
+
+                document.body.appendChild(heart);
+
+                setTimeout(() => {
+
+                    heart.style.transform =
+                        "translateY(-110vh) rotate(" +
+                        (Math.random() * 360) +
+                        "deg)";
+
+                    heart.style.opacity = "0";
+
+                }, 100);
+
+                setTimeout(() => {
+                    heart.remove();
+                }, 3200);
+            }
+        }
+
+    </script>
+
+</body>
+</html>
+```
