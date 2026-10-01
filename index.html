@@ -2,1133 +2,1004 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>One Little Question ❤️</title>
-
-<style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-html, body {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background:
-        radial-gradient(circle at 50% 40%, #461044 0%, #19001f 45%, #050006 100%);
-    color: white;
-}
-
-/* ================= BACKGROUND ================= */
-
-#stars {
-    position: fixed;
-    inset: 0;
-    z-index: 1;
-    pointer-events: none;
-}
-
-.star {
-    position: absolute;
-    width: 3px;
-    height: 3px;
-    border-radius: 50%;
-    background: white;
-    box-shadow: 0 0 10px white;
-    animation: twinkle 2s infinite ease-in-out;
-}
-
-@keyframes twinkle {
-    0%,100% {
-        opacity: .15;
-        transform: scale(.5);
-    }
-    50% {
-        opacity: 1;
-        transform: scale(1.5);
-    }
-}
-
-.glow {
-    position: fixed;
-    inset: 0;
-    z-index: 2;
-    pointer-events: none;
-    background:
-        radial-gradient(circle at 20% 20%, rgba(255,50,150,.15), transparent 30%),
-        radial-gradient(circle at 80% 30%, rgba(150,50,255,.15), transparent 30%),
-        radial-gradient(circle at 50% 80%, rgba(255,30,100,.15), transparent 35%);
-    animation: glowPulse 5s infinite alternate;
-}
-
-@keyframes glowPulse {
-    from { opacity: .5; }
-    to { opacity: 1; }
-}
-
-/* ================= MUSIC ================= */
-
-#musicButton {
-    position: fixed;
-    top: 18px;
-    right: 18px;
-    z-index: 1000;
-
-    width: 50px;
-    height: 50px;
-
-    border-radius: 50%;
-    border: 1px solid rgba(255,255,255,.25);
-
-    background: rgba(255,255,255,.1);
-    color: white;
-    font-size: 22px;
-
-    cursor: pointer;
-    backdrop-filter: blur(10px);
-}
-
-/* ================= MAIN ================= */
-
-.container {
-    position: relative;
-    z-index: 10;
-
-    width: 100%;
-    height: 100%;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Her Story ❤️</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0b0710;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* =========================
+           BACKGROUND HEARTS
+        ========================= */
+
+        .heart {
+            position: fixed;
+            bottom: -30px;
+            font-size: 20px;
+            opacity: 0;
+            animation: floatHeart 8s linear infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes floatHeart {
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
 
-    padding: 20px;
-}
+            10% {
+                opacity: 0.7;
+            }
 
-.card {
-    width: min(650px, 94vw);
-    min-height: 570px;
+            90% {
+                opacity: 0.7;
+            }
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+            100% {
+                transform: translateY(-110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
 
-    text-align: center;
+        /* =========================
+           MUSIC BUTTON
+        ========================= */
 
-    padding: 40px 25px;
+        .music-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
 
-    border-radius: 35px;
+            border: none;
+            background: rgba(255,255,255,0.12);
+            color: white;
 
-    background: rgba(255,255,255,.07);
-    border: 1px solid rgba(255,255,255,.15);
+            padding: 13px 20px;
+            border-radius: 50px;
 
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(12px);
 
-    box-shadow:
-        0 0 80px rgba(255,40,140,.18),
-        inset 0 0 30px rgba(255,255,255,.03);
+            cursor: pointer;
 
-    animation: cardIn 1.2s ease;
-}
+            font-size: 14px;
+            font-weight: 500;
 
-@keyframes cardIn {
-    from {
-        opacity: 0;
-        transform: scale(.8) translateY(30px);
-    }
+            transition: 0.3s;
+        }
 
-    to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-    }
-}
+        .music-button:hover {
+            background: rgba(255,255,255,0.25);
+            transform: scale(1.05);
+        }
 
-/* ================= HEART ================= */
+        /* =========================
+           HERO
+        ========================= */
 
-.heart-container {
-    width: 150px;
-    height: 150px;
+        .hero {
+            height: 100vh;
+            min-height: 650px;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-    margin-bottom: 25px;
-}
+            text-align: center;
 
-.heart {
-    position: relative;
+            position: relative;
 
-    width: 90px;
-    height: 90px;
+            background:
+                radial-gradient(circle at center,
+                rgba(255,105,180,0.18),
+                transparent 45%),
+                linear-gradient(135deg, #120914, #080509);
+        }
 
-    background: #ff2878;
+        .hero-content {
+            max-width: 900px;
+            padding: 30px;
 
-    transform: rotate(-45deg);
+            position: relative;
+            z-index: 5;
+        }
 
-    box-shadow:
-        0 0 25px #ff2878,
-        0 0 60px rgba(255,40,120,.7);
+        .small-title {
+            font-size: 15px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
 
-    animation: heartbeat 1.2s infinite;
-}
+            color: #e8b4d0;
 
-.heart::before,
-.heart::after {
-    content: "";
+            margin-bottom: 25px;
+        }
 
-    position: absolute;
+        .hero h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(65px, 11vw, 150px);
 
-    width: 90px;
-    height: 90px;
+            font-weight: 400;
 
-    border-radius: 50%;
+            margin-bottom: 20px;
 
-    background: #ff2878;
-}
+            background: linear-gradient(
+                90deg,
+                #fff,
+                #ffb6d9,
+                #fff
+            );
 
-.heart::before {
-    top: -45px;
-    left: 0;
-}
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
 
-.heart::after {
-    top: 0;
-    left: 45px;
-}
+            animation: titleGlow 3s ease-in-out infinite;
+        }
 
-@keyframes heartbeat {
-    0%,100% {
-        transform: rotate(-45deg) scale(1);
-    }
+        @keyframes titleGlow {
 
-    15% {
-        transform: rotate(-45deg) scale(1.15);
-    }
+            0%,100% {
+                filter: drop-shadow(0 0 10px rgba(255,150,200,0.2));
+            }
 
-    30% {
-        transform: rotate(-45deg) scale(1);
-    }
+            50% {
+                filter: drop-shadow(0 0 30px rgba(255,150,200,0.5));
+            }
+        }
 
-    45% {
-        transform: rotate(-45deg) scale(1.1);
-    }
-}
+        .hero p {
+            font-size: 18px;
+            font-weight: 300;
+            color: #ddd;
 
-/* ================= TEXT ================= */
+            max-width: 650px;
+            margin: auto;
 
-h1 {
-    font-size: clamp(30px, 7vw, 50px);
-    margin-bottom: 20px;
+            line-height: 1.8;
+        }
 
-    background: linear-gradient(
-        90deg,
-        white,
-        #ff9fc7,
-        white
-    );
+        .scroll {
+            margin-top: 60px;
+            font-size: 13px;
+            letter-spacing: 3px;
+            color: #aaa;
 
-    background-size: 200%;
+            animation: bounce 2s infinite;
+        }
 
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+        @keyframes bounce {
 
-    animation: shine 4s linear infinite;
-}
+            0%,100% {
+                transform: translateY(0);
+            }
 
-@keyframes shine {
-    from { background-position: 0%; }
-    to { background-position: 200%; }
-}
+            50% {
+                transform: translateY(10px);
+            }
+        }
 
-.question {
-    max-width: 520px;
+        /* =========================
+           STORY
+        ========================= */
 
-    font-size: clamp(18px, 4vw, 24px);
+        .story {
+            padding: 120px 20px;
+            position: relative;
+        }
 
-    line-height: 1.6;
+        .section-title {
+            text-align: center;
+            margin-bottom: 100px;
+        }
 
-    color: #f8dce9;
+        .section-title h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 65px;
+            font-weight: 400;
+        }
 
-    margin-bottom: 30px;
-}
+        .section-title p {
+            color: #aaa;
+            margin-top: 10px;
+        }
 
-.highlight {
-    color: #ff77ac;
-    font-weight: bold;
-}
+        /* =========================
+           TIMELINE
+        ========================= */
 
-/* ================= BUTTONS ================= */
+        .timeline {
+            max-width: 1100px;
+            margin: auto;
 
-.buttons {
-    position: relative;
+            position: relative;
+        }
 
-    width: 100%;
-    height: 100px;
+        .timeline::before {
+            content: "";
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+            position: absolute;
 
-    gap: 25px;
-}
+            left: 50%;
+            top: 0;
+            bottom: 0;
 
-button {
-    font-family: inherit;
-    font-weight: bold;
+            width: 1px;
 
-    border: none;
+            background: linear-gradient(
+                transparent,
+                #d879a6,
+                #d879a6,
+                transparent
+            );
+        }
 
-    cursor: pointer;
+        .memory {
+            width: 50%;
+            padding: 40px;
 
-    border-radius: 999px;
+            position: relative;
 
-    padding: 16px 35px;
+            opacity: 0;
+            transform: translateY(50px);
 
-    font-size: 19px;
+            transition: 1s;
+        }
 
-    touch-action: manipulation;
+        .memory.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-    transition: transform .2s ease;
-}
+        .memory:nth-child(odd) {
+            left: 0;
+            text-align: right;
+        }
 
-#yes {
-    background: linear-gradient(135deg,#ff4388,#ff146b);
-    color: white;
+        .memory:nth-child(even) {
+            left: 50%;
+        }
 
-    box-shadow:
-        0 8px 35px rgba(255,20,100,.5);
+        .memory-dot {
+            position: absolute;
 
-    animation: yesPulse 2s infinite;
-}
+            width: 14px;
+            height: 14px;
 
-#yes:hover {
-    transform: scale(1.1);
-}
+            border-radius: 50%;
 
-@keyframes yesPulse {
-    0%,100% {
-        box-shadow: 0 8px 30px rgba(255,20,100,.4);
-    }
+            background: #ff9ac4;
 
-    50% {
-        box-shadow: 0 8px 55px rgba(255,20,100,.8);
-    }
-}
+            box-shadow: 0 0 20px #ff9ac4;
 
-#no {
-    background: rgba(255,255,255,.1);
+            top: 50px;
+        }
 
-    color: white;
+        .memory:nth-child(odd) .memory-dot {
+            right: -7px;
+        }
 
-    border: 1px solid rgba(255,255,255,.2);
+        .memory:nth-child(even) .memory-dot {
+            left: -7px;
+        }
 
-    position: relative;
+        /* =========================
+           PHOTO CARD
+        ========================= */
 
-    z-index: 20;
-}
+        .photo-card {
+            display: inline-block;
 
-/* ================= FLOATING HEARTS ================= */
+            width: 100%;
+            max-width: 430px;
 
-.floating-heart {
-    position: fixed;
+            background: rgba(255,255,255,0.05);
 
-    bottom: -50px;
+            padding: 12px;
 
-    z-index: 5;
+            border-radius: 22px;
 
-    pointer-events: none;
+            border: 1px solid rgba(255,255,255,0.1);
 
-    animation: floatUp linear forwards;
-}
+            backdrop-filter: blur(10px);
 
-@keyframes floatUp {
+            transition: 0.5s;
 
-    0% {
-        transform:
-            translateY(0)
-            translateX(0)
-            rotate(0)
-            scale(.7);
+            overflow: hidden;
+        }
 
-        opacity: 0;
-    }
+        .photo-card:hover {
+            transform: translateY(-10px) scale(1.02);
 
-    10% {
-        opacity: 1;
-    }
+            border-color: rgba(255,170,210,0.5);
 
-    50% {
-        transform:
-            translateY(-50vh)
-            translateX(50px)
-            rotate(180deg)
-            scale(1.2);
-    }
+            box-shadow:
+                0 20px 50px rgba(255,100,170,0.15);
+        }
 
-    100% {
-        transform:
-            translateY(-120vh)
-            translateX(-50px)
-            rotate(360deg)
-            scale(.6);
+        .photo-card img {
+            width: 100%;
 
-        opacity: 0;
-    }
-}
+            height: 430px;
 
-/* ================= CELEBRATION ================= */
+            object-fit: cover;
 
-#celebration {
-    position: fixed;
-    inset: 0;
+            border-radius: 15px;
 
-    z-index: 500;
+            display: block;
+        }
 
-    display: none;
+        .photo-text {
+            padding: 25px 15px 15px;
+        }
 
-    align-items: center;
-    justify-content: center;
+        .photo-number {
+            font-size: 11px;
+            letter-spacing: 3px;
+            color: #d98caf;
+            text-transform: uppercase;
+        }
 
-    text-align: center;
+        .photo-text h3 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 38px;
+            font-weight: 400;
 
-    padding: 20px;
+            margin: 10px 0;
+        }
 
-    background:
-        radial-gradient(
-            circle,
-            rgba(255,40,130,.45),
-            rgba(20,0,30,.96) 70%
-        );
+        .photo-text p {
+            color: #bbb;
+            font-size: 14px;
+            line-height: 1.8;
+        }
 
-    animation: celebrationIn .8s ease;
-}
+        /* =========================
+           TEENAGE SPECIAL
+        ========================= */
 
-@keyframes celebrationIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
+        .final-section {
+            min-height: 100vh;
 
-.celebration-content {
-    max-width: 800px;
-}
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-.big-heart {
-    font-size: clamp(90px,20vw,180px);
+            padding: 100px 20px;
 
-    animation: bigHeart 1s infinite alternate;
+            text-align: center;
 
-    filter:
-        drop-shadow(0 0 30px #ff2878)
-        drop-shadow(0 0 70px #ff2878);
-}
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(255,105,180,0.18),
+                    transparent 50%
+                );
+        }
 
-@keyframes bigHeart {
-    from { transform: scale(1); }
-    to { transform: scale(1.2); }
-}
+        .final-content {
+            max-width: 900px;
+        }
 
-#celebration h2 {
-    font-size: clamp(45px,10vw,90px);
+        .final-label {
+            letter-spacing: 5px;
+            font-size: 13px;
+            color: #d997b8;
+            text-transform: uppercase;
+        }
 
-    margin: 15px 0;
+        .final-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(65px, 10vw, 130px);
+            font-weight: 400;
 
-    text-shadow:
-        0 0 20px #ff2878,
-        0 0 50px #ff2878;
-}
+            margin: 20px 0;
+        }
 
-#celebration p {
-    font-size: clamp(20px,5vw,32px);
+        .teen-photo {
+            width: min(500px, 90vw);
+            height: 620px;
 
-    line-height: 1.6;
+            object-fit: cover;
 
-    color: #ffd9e8;
-}
+            border-radius: 30px;
 
-/* ================= CONFETTI ================= */
+            padding: 10px;
 
-.confetti {
-    position: fixed;
+            background: rgba(255,255,255,0.08);
 
-    top: -30px;
+            border: 1px solid rgba(255,255,255,0.15);
 
-    width: 8px;
-    height: 15px;
+            box-shadow:
+                0 30px 100px rgba(255,100,170,0.2);
 
-    z-index: 1000;
+            transition: 0.6s;
+        }
 
-    pointer-events: none;
+        .teen-photo:hover {
+            transform: scale(1.02);
+        }
 
-    animation: fall linear forwards;
-}
+        .final-text {
+            max-width: 650px;
+            margin: 40px auto 0;
 
-@keyframes fall {
-    to {
-        transform:
-            translateY(110vh)
-            rotate(720deg);
-    }
-}
+            color: #ccc;
 
-/* ================= MOBILE ================= */
+            font-size: 17px;
+            line-height: 2;
+        }
 
-@media(max-width:600px) {
+        .beautiful-words {
+            margin-top: 35px;
 
-    .card {
-        min-height: 520px;
-        padding: 30px 18px;
-        border-radius: 28px;
-    }
+            display: flex;
+            justify-content: center;
+            gap: 15px;
 
-    .heart-container {
-        width: 120px;
-        height: 120px;
-    }
+            flex-wrap: wrap;
+        }
 
-    .heart,
-    .heart::before,
-    .heart::after {
-        width: 72px;
-        height: 72px;
-    }
+        .word {
+            padding: 10px 18px;
 
-    .heart::before {
-        top: -36px;
-    }
+            border: 1px solid rgba(255,160,200,0.3);
 
-    .heart::after {
-        left: 36px;
-    }
+            border-radius: 50px;
 
-    .buttons {
-        height: 120px;
-    }
+            color: #f0b6d2;
 
-    button {
-        padding: 14px 25px;
-        font-size: 17px;
-    }
+            font-size: 13px;
+        }
 
-}
-</style>
+        /* =========================
+           END MESSAGE
+        ========================= */
+
+        .ending {
+            min-height: 70vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            padding: 80px 20px;
+        }
+
+        .ending-content {
+            max-width: 800px;
+        }
+
+        .ending h2 {
+            font-family: 'Great Vibes', cursive;
+
+            font-size: clamp(55px, 8vw, 100px);
+
+            font-weight: 400;
+        }
+
+        .ending p {
+            margin-top: 30px;
+
+            color: #bbb;
+
+            line-height: 2;
+
+            font-size: 17px;
+        }
+
+        .heart-big {
+            font-size: 60px;
+            margin-top: 40px;
+
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+
+            0%,100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        footer {
+            text-align: center;
+
+            padding: 30px;
+
+            color: #666;
+
+            font-size: 12px;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media(max-width: 700px) {
+
+            .timeline::before {
+                left: 10px;
+            }
+
+            .memory {
+                width: 100%;
+                left: 0 !important;
+
+                text-align: left !important;
+
+                padding-left: 45px;
+                padding-right: 5px;
+            }
+
+            .memory:nth-child(odd) .memory-dot,
+            .memory:nth-child(even) .memory-dot {
+                left: 3px;
+                right: auto;
+            }
+
+            .photo-card {
+                max-width: 100%;
+            }
+
+            .photo-card img {
+                height: 400px;
+            }
+
+            .teen-photo {
+                height: 500px;
+            }
+
+            .section-title h2 {
+                font-size: 52px;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+
+        }
+
+    </style>
 </head>
 
 <body>
 
-<!-- BACKGROUND -->
-<div id="stars"></div>
-<div class="glow"></div>
+    <!-- =========================
+         MUSIC
+    ========================= -->
 
-<!-- MUSIC -->
-<audio id="music" autoplay loop preload="auto">
-    <source src="music.mp3" type="audio/mpeg">
-</audio>
+    <audio id="music" loop>
+        <source src="Die With A Smile-(SambalpuriStar.In).mp3" type="audio/mpeg">
+        Your browser does not support audio.
+    </audio>
 
-<button id="musicButton">🎵</button>
+    <button class="music-button" id="musicButton">
+        ♫ Play Our Song
+    </button>
 
-<!-- QUESTION -->
-<div class="container" id="main">
 
-    <div class="card">
+    <!-- FLOATING HEARTS -->
 
-        <div class="heart-container">
-            <div class="heart"></div>
+    <div class="heart" style="left:5%; animation-delay:0s;">♡</div>
+    <div class="heart" style="left:15%; animation-delay:2s;">♥</div>
+    <div class="heart" style="left:28%; animation-delay:4s;">♡</div>
+    <div class="heart" style="left:40%; animation-delay:1s;">♥</div>
+    <div class="heart" style="left:55%; animation-delay:5s;">♡</div>
+    <div class="heart" style="left:70%; animation-delay:3s;">♥</div>
+    <div class="heart" style="left:85%; animation-delay:6s;">♡</div>
+    <div class="heart" style="left:95%; animation-delay:1.5s;">♥</div>
+
+
+    <!-- =========================
+         HERO
+    ========================= -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="small-title">
+                A little story about you
+            </div>
+
+            <h1>Her Story</h1>
+
+            <p>
+                Before I knew you, before I admired you,
+                there was a little girl growing up,
+                becoming the beautiful person you are today.
+            </p>
+
+            <div class="scroll">
+                ↓ SCROLL TO BEGIN ↓
+            </div>
+
         </div>
 
-        <h1>Hey Beautiful ❤️</h1>
+    </section>
 
-        <p class="question">
-            I have one little question for you...
-            <br><br>
 
-            <span class="highlight">
-                Will you go on a date with me?
-            </span>
+    <!-- =========================
+         CHILDHOOD STORY
+    ========================= -->
 
-            💕
-        </p>
+    <section class="story">
 
-        <div class="buttons">
+        <div class="section-title">
 
-            <button id="yes">
-                YES ❤️
-            </button>
+            <h2>Once Upon A Time...</h2>
 
-            <button id="no">
-                NO 😈
-            </button>
+            <p>
+                There was a little girl with the sweetest smile.
+            </p>
 
         </div>
 
-    </div>
 
-</div>
+        <div class="timeline">
 
-<!-- CELEBRATION -->
-<div id="celebration">
 
-    <div class="celebration-content">
+            <!-- PHOTO 1 -->
 
-        <div class="big-heart">
-            ❤️
+            <div class="memory">
+
+                <div class="memory-dot"></div>
+
+                <div class="photo-card">
+
+                    <img src="WhatsApp Image 2026-10-01 at 8.22.28 PM.png" alt="Childhood photo 1">
+
+                    <div class="photo-text">
+
+                        <div class="photo-number">
+                            Memory 01
+                        </div>
+
+                        <h3>The Little Girl</h3>
+
+                        <p>
+                            Look at you... so tiny, so innocent,
+                            and already unbelievably cute.
+                            You probably had no idea how beautiful
+                            your story was going to become.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO 2 -->
+
+            <div class="memory">
+
+                <div class="memory-dot"></div>
+
+                <div class="photo-card">
+
+                    <img src="WhatsApp Image 2026-10-01 at 8.22.29 PM (1).png" alt="Childhood photo 2">
+
+                    <div class="photo-text">
+
+                        <div class="photo-number">
+                            Memory 02
+                        </div>
+
+                        <h3>That Little Smile</h3>
+
+                        <p>
+                            That smile... the kind of smile that could
+                            make an ordinary day feel a little brighter.
+                            You were already carrying your own little magic.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO 3 -->
+
+            <div class="memory">
+
+                <div class="memory-dot"></div>
+
+                <div class="photo-card">
+
+                    <img src="WhatsApp Image 2026-10-01 at 8.22.29 PM (3).png" alt="Childhood photo 3">
+
+                    <div class="photo-text">
+
+                        <div class="photo-number">
+                            Memory 03
+                        </div>
+
+                        <h3>Little Adventures</h3>
+
+                        <p>
+                            A little girl discovering the world,
+                            making memories, laughing,
+                            and growing one beautiful moment at a time.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO 4 -->
+
+            <div class="memory">
+
+                <div class="memory-dot"></div>
+
+                <div class="photo-card">
+
+                    <img src="WhatsApp Image 2026-10-01 at 8.22.29 PM.png" alt="Childhood photo 4">
+
+                    <div class="photo-text">
+
+                        <div class="photo-number">
+                            Memory 04
+                        </div>
+
+                        <h3>Growing Up</h3>
+
+                        <p>
+                            You were getting older,
+                            but that sweetness was still there.
+                            The little girl was slowly becoming
+                            the incredible person you are today.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO 5 -->
+
+            <div class="memory">
+
+                <div class="memory-dot"></div>
+
+                <div class="photo-card">
+
+                    <img src="WhatsApp Image 2026-10-01 at 8.22.28 PM.png" alt="Childhood photo 5">
+
+                    <div class="photo-text">
+
+                        <div class="photo-number">
+                            Memory 05
+                        </div>
+
+                        <h3>Almost There...</h3>
+
+                        <p>
+                            And with every year came something new:
+                            more confidence, more strength,
+                            more beauty, and a little more of the person
+                            I would someday know.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
         </div>
 
-        <h2>YAAAAAY! 🥰</h2>
-
-        <p>
-            I KNEW YOU'D SAY YES! 💕
-            <br>
-            It's officially a date! 🌹✨
-        </p>
-
-    </div>
-
-</div>
-
-<script>
-
-/* =====================================================
-   STARS
-===================================================== */
-
-const stars = document.getElementById("stars");
-
-for(let i = 0; i < 150; i++){
-
-    const star = document.createElement("div");
-
-    star.className = "star";
-
-    star.style.left = Math.random() * 100 + "vw";
-    star.style.top = Math.random() * 100 + "vh";
-
-    const size = Math.random() * 3 + 1;
-
-    star.style.width = size + "px";
-    star.style.height = size + "px";
-
-    star.style.animationDelay =
-        Math.random() * 3 + "s";
-
-    star.style.animationDuration =
-        1 + Math.random() * 3 + "s";
-
-    stars.appendChild(star);
-}
+    </section>
 
 
-/* =====================================================
-   MUSIC
-===================================================== */
+    <!-- =========================
+         TEENAGE PHOTO
+    ========================= -->
 
-const music = document.getElementById("music");
-const musicButton = document.getElementById("musicButton");
+    <section class="final-section">
 
-music.volume = 0.45;
+        <div class="final-content">
 
-let musicStarted = false;
+            <div class="final-label">
+                And then...
+            </div>
+
+            <div class="final-title">
+                She grew up.
+            </div>
 
 
-/*
-    TRY TO START MUSIC IMMEDIATELY
-*/
+            <img
+                class="teen-photo"
+                src="photos/teenage.jpg"
+                alt="Her teenage photo"
+            >
 
-function startMusic(){
 
-    music.play()
-        .then(() => {
+            <p class="final-text">
 
-            musicStarted = true;
-            musicButton.textContent = "🔊";
+                The little girl from those memories
+                became someone beautiful, strong,
+                confident, and unforgettable.
 
-        })
-        .catch(() => {
+                <br><br>
 
-            /*
-                Browser autoplay protection.
+                She grew up,
+                but somehow she never lost
+                that beautiful little spark.
 
-                The music will start immediately
-                after the first interaction.
-            */
+            </p>
+
+
+            <div class="beautiful-words">
+
+                <div class="word">Beautiful</div>
+                <div class="word">Strong</div>
+                <div class="word">Confident</div>
+                <div class="word">Kind</div>
+                <div class="word">Brave</div>
+                <div class="word">Unforgettable</div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FINAL MESSAGE
+    ========================= -->
+
+    <section class="ending">
+
+        <div class="ending-content">
+
+            <h2>
+                Every version of you
+            </h2>
+
+            <p>
+
+                From the little girl in those old photos
+                to the beautiful person standing here today...
+
+                <br><br>
+
+                I love the story of how you became you.
+
+                <br><br>
+
+                And if I could go back in time,
+                I would still choose to meet
+                every version of you.
+
+            </p>
+
+            <div class="heart-big">
+                ♥
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <footer>
+
+        Eng Ahmad Moustafa TO Eng Tala Bakkar❤️
+
+    </footer>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+        /* =========================
+           MUSIC
+        ========================= */
+
+        const music = document.getElementById("music");
+        const musicButton = document.getElementById("musicButton");
+
+        let playing = false;
+
+        musicButton.addEventListener("click", function() {
+
+            if (playing) {
+
+                music.pause();
+
+                musicButton.innerHTML = "♫ Play Our Song";
+
+                playing = false;
+
+            } else {
+
+                music.play();
+
+                musicButton.innerHTML = "♫ Pause Our Song";
+
+                playing = true;
+
+            }
 
         });
-}
 
-window.addEventListener("load", startMusic);
 
+        /* =========================
+           SCROLL ANIMATION
+        ========================= */
 
-/*
-    Start music on ANY first interaction.
-*/
+        const memories = document.querySelectorAll(".memory");
 
-function firstInteraction(){
+        function showMemories() {
 
-    if(!musicStarted){
+            memories.forEach(function(memory) {
 
-        music.play()
-            .then(() => {
+                const position =
+                    memory.getBoundingClientRect().top;
 
-                musicStarted = true;
-                musicButton.textContent = "🔊";
+                const screenHeight =
+                    window.innerHeight;
 
-            })
-            .catch(() => {});
+                if (position < screenHeight - 100) {
 
-    }
-}
+                    memory.classList.add("show");
 
-document.addEventListener(
-    "click",
-    firstInteraction,
-    { once:true }
-);
+                }
 
-document.addEventListener(
-    "touchstart",
-    firstInteraction,
-    { once:true }
-);
-
-
-/*
-    MUSIC BUTTON
-*/
-
-musicButton.addEventListener("click", function(){
-
-    if(music.paused){
-
-        music.play();
-
-        musicButton.textContent = "🔊";
-
-    }else{
-
-        music.pause();
-
-        musicButton.textContent = "🎵";
-
-    }
-
-});
-
-
-/* =====================================================
-   NO BUTTON
-===================================================== */
-
-const noButton = document.getElementById("no");
-const buttons = document.querySelector(".buttons");
-
-let attempts = 0;
-
-
-/*
-    Move NO button somewhere random.
-*/
-
-function escapeNo(){
-
-    attempts++;
-
-    const buttonWidth =
-        noButton.offsetWidth;
-
-    const buttonHeight =
-        noButton.offsetHeight;
-
-
-    /*
-        PHONE
-    */
-
-    if(window.innerWidth <= 600){
-
-        noButton.style.position = "fixed";
-
-        const maxX =
-            window.innerWidth -
-            buttonWidth -
-            15;
-
-        const maxY =
-            window.innerHeight -
-            buttonHeight -
-            30;
-
-        const x =
-            Math.max(10, Math.random() * maxX);
-
-        const y =
-            Math.max(10, Math.random() * maxY);
-
-        noButton.style.left = x + "px";
-        noButton.style.top = y + "px";
-
-    }
-
-    /*
-        COMPUTER
-    */
-
-    else{
-
-        noButton.style.position = "absolute";
-
-        const area =
-            buttons.getBoundingClientRect();
-
-        const x =
-            Math.random() *
-            Math.max(
-                10,
-                area.width - buttonWidth
-            );
-
-        const y =
-            Math.random() *
-            Math.max(
-                10,
-                area.height - buttonHeight
-            );
-
-        noButton.style.left = x + "px";
-        noButton.style.top = y + "px";
-
-    }
-
-
-    /*
-        Make it smaller after several attempts.
-    */
-
-    if(attempts > 3){
-
-        const scale =
-            Math.max(
-                .6,
-                1 - attempts * .04
-            );
-
-        noButton.style.transform =
-            `scale(${scale})`;
-    }
-
-}
-
-
-/*
-    PC mouse
-*/
-
-noButton.addEventListener(
-    "mouseenter",
-    escapeNo
-);
-
-
-/*
-    Phone touch
-*/
-
-noButton.addEventListener(
-    "touchstart",
-    function(event){
-
-        event.preventDefault();
-
-        escapeNo();
-
-    },
-    {passive:false}
-);
-
-
-/*
-    Pointer
-*/
-
-noButton.addEventListener(
-    "pointerdown",
-    function(event){
-
-        if(event.pointerType === "touch"){
-
-            event.preventDefault();
-
-            escapeNo();
+            });
 
         }
 
-    }
-);
+        window.addEventListener("scroll", showMemories);
 
+        showMemories();
 
-/*
-    Detect mouse approaching NO.
-*/
-
-document.addEventListener(
-    "mousemove",
-    function(event){
-
-        const rect =
-            noButton.getBoundingClientRect();
-
-        const centerX =
-            rect.left + rect.width / 2;
-
-        const centerY =
-            rect.top + rect.height / 2;
-
-        const distance =
-            Math.hypot(
-                event.clientX - centerX,
-                event.clientY - centerY
-            );
-
-        if(distance < 80){
-
-            escapeNo();
-
-        }
-
-    }
-);
-
-
-/*
-    If somehow clicked...
-*/
-
-noButton.addEventListener(
-    "click",
-    function(event){
-
-        event.preventDefault();
-
-        escapeNo();
-
-    }
-);
-
-
-/* =====================================================
-   YES
-===================================================== */
-
-const yesButton =
-    document.getElementById("yes");
-
-const main =
-    document.getElementById("main");
-
-const celebration =
-    document.getElementById("celebration");
-
-
-yesButton.addEventListener(
-    "click",
-    function(){
-
-        /*
-            Make sure music plays.
-        */
-
-        music.play().catch(() => {});
-
-
-        /*
-            Hide question.
-        */
-
-        main.style.display = "none";
-
-
-        /*
-            Show celebration.
-        */
-
-        celebration.style.display = "flex";
-
-
-        /*
-            Hearts
-        */
-
-        for(let i = 0; i < 100; i++){
-
-            setTimeout(
-                createHeart,
-                i * 40
-            );
-
-        }
-
-
-        /*
-            Confetti
-        */
-
-        for(let i = 0; i < 120; i++){
-
-            setTimeout(
-                createConfetti,
-                i * 20
-            );
-
-        }
-
-
-        /*
-            WhatsApp
-        */
-
-        setTimeout(function(){
-
-            const phone =
-                "96171701308";
-
-            const message =
-                "❤️ SHE SAID YES! ❤️\n\n" +
-                "It's a date! 🥰💕🌹";
-
-            const url =
-                "https://wa.me/" +
-                phone +
-                "?text=" +
-                encodeURIComponent(message);
-
-            window.open(
-                url,
-                "_blank"
-            );
-
-        }, 2500);
-
-    }
-);
-
-
-/* =====================================================
-   FLOATING HEARTS
-===================================================== */
-
-function createHeart(){
-
-    const heart =
-        document.createElement("div");
-
-    heart.className =
-        "floating-heart";
-
-    const heartList = [
-        "❤️",
-        "💕",
-        "💗",
-        "💖",
-        "💘",
-        "💝",
-        "💓",
-        "🥰"
-    ];
-
-    heart.textContent =
-        heartList[
-            Math.floor(
-                Math.random() *
-                heartList.length
-            )
-        ];
-
-    heart.style.left =
-        Math.random() * 100 + "vw";
-
-    heart.style.fontSize =
-        15 + Math.random() * 35 + "px";
-
-    const duration =
-        3 + Math.random() * 5;
-
-    heart.style.animationDuration =
-        duration + "s";
-
-    document.body.appendChild(heart);
-
-    setTimeout(
-        () => heart.remove(),
-        duration * 1000
-    );
-
-}
-
-
-/*
-    Continuous hearts
-*/
-
-setInterval(
-    createHeart,
-    900
-);
-
-
-/* =====================================================
-   CONFETTI
-===================================================== */
-
-function createConfetti(){
-
-    const piece =
-        document.createElement("div");
-
-    piece.className =
-        "confetti";
-
-    piece.style.left =
-        Math.random() * 100 + "vw";
-
-    piece.style.width =
-        5 + Math.random() * 8 + "px";
-
-    piece.style.height =
-        8 + Math.random() * 14 + "px";
-
-    piece.style.background =
-        [
-            "#ff3d83",
-            "#ff9fc4",
-            "#ffffff",
-            "#ffd700",
-            "#b66cff"
-        ][
-            Math.floor(
-                Math.random() * 5
-            )
-        ];
-
-    piece.style.animationDuration =
-        2 + Math.random() * 4 + "s";
-
-    document.body.appendChild(piece);
-
-    setTimeout(
-        () => piece.remove(),
-        6000
-    );
-
-}
-
-</script>
+    </script>
 
 </body>
 </html>
